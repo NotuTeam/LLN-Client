@@ -30,7 +30,7 @@ export default function DriverStep({
   });
   const [vehiclePhoto, setVehiclePhoto] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(
-    order.vehicle_photo?.url || null
+    order.vehicle_photo?.url || null,
   );
   const photoInputRef = useRef<HTMLInputElement>(null);
 
@@ -51,7 +51,11 @@ export default function DriverStep({
   };
 
   const handleSubmit = () => {
-    if (!formData.driver_name || !formData.driver_phone || !formData.vehicle_plate) {
+    if (
+      !formData.driver_name ||
+      !formData.driver_phone ||
+      !formData.vehicle_plate
+    ) {
       alert("Harap lengkapi semua data");
       return;
     }
@@ -64,14 +68,14 @@ export default function DriverStep({
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Instructions */}
-      <div className="card bg-gradient-to-br from-cyan/10 to-accent/5 border-cyan/20 animate-slide-up">
+      <div className="card bg-green-50 border-green-200 animate-slide-up">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-cyan/20 rounded-2xl flex items-center justify-center">
-            <Truck className="w-6 h-6 text-cyan" />
+          <div className="w-12 h-12 bg-green-200 rounded-xl flex items-center justify-center">
+            <Truck className="w-6 h-6 text-green-800" />
           </div>
           <div>
-            <p className="font-semibold text-text-primary">Isi Data Driver</p>
-            <p className="text-sm text-text-secondary mt-0.5">
+            <p className="font-semibold text-green-800">Isi Data Driver</p>
+            <p className="text-sm text-green-600 mt-0.5">
               Lengkapi data driver yang akan menjemput barang
             </p>
           </div>
@@ -79,12 +83,15 @@ export default function DriverStep({
       </div>
 
       {/* Form Card */}
-      <div className="card space-y-5 animate-slide-up" style={{ animationDelay: "0.1s" }}>
+      <div
+        className="card space-y-5 animate-slide-up"
+        style={{ animationDelay: "0.1s" }}
+      >
         {/* Driver Name */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-medium text-text-secondary mb-3">
-            <div className="w-8 h-8 bg-accent/20 rounded-xl flex items-center justify-center">
-              <User className="w-4 h-4 text-accent" />
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">
+            <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
+              <User className="w-4 h-4 text-primary-600" />
             </div>
             Nama Driver
           </label>
@@ -101,9 +108,9 @@ export default function DriverStep({
 
         {/* Driver Phone */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-medium text-text-secondary mb-3">
-            <div className="w-8 h-8 bg-cyan/20 rounded-xl flex items-center justify-center">
-              <Phone className="w-4 h-4 text-cyan" />
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">
+            <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
+              <Phone className="w-4 h-4 text-primary-600" />
             </div>
             Nomor HP Driver
           </label>
@@ -120,9 +127,9 @@ export default function DriverStep({
 
         {/* Vehicle Plate */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-medium text-text-secondary mb-3">
-            <div className="w-8 h-8 bg-accent/20 rounded-xl flex items-center justify-center">
-              <Car className="w-4 h-4 text-accent" />
+          <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">
+            <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
+              <Car className="w-4 h-4 text-primary-600" />
             </div>
             Nomor Polisi Kendaraan
           </label>
@@ -143,9 +150,9 @@ export default function DriverStep({
 
       {/* Vehicle Photo */}
       <div className="card animate-slide-up" style={{ animationDelay: "0.2s" }}>
-        <label className="flex items-center gap-2 text-sm font-medium text-text-secondary mb-4">
-          <div className="w-8 h-8 bg-dark-50 rounded-xl flex items-center justify-center">
-            <Camera className="w-4 h-4 text-text-secondary" />
+        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-4">
+          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+            <Camera className="w-4 h-4 text-gray-600" />
           </div>
           Foto Kendaraan (Opsional)
         </label>
@@ -155,7 +162,7 @@ export default function DriverStep({
             <img
               src={photoPreview}
               alt="Preview"
-              className="w-full rounded-2xl object-cover max-h-48 border border-dark-50"
+              className="w-full rounded-xl object-cover max-h-48 border border-gray-200"
             />
             <button
               onClick={() => {
@@ -172,13 +179,15 @@ export default function DriverStep({
         ) : (
           <button
             onClick={() => photoInputRef.current?.click()}
-            className="w-full h-36 border-2 border-dashed border-dark-50 rounded-3xl 
+            className="w-full h-36 border-2 border-dashed border-gray-300 rounded-xl 
                        flex flex-col items-center justify-center gap-3
-                       text-text-secondary hover:border-accent/50 hover:text-accent
+                       text-gray-500 hover:border-primary-400 hover:text-primary-600
                        transition-all duration-300 group"
           >
-            <div className="w-12 h-12 bg-dark-100 rounded-2xl flex items-center justify-center
-                            group-hover:bg-accent/20 transition-colors">
+            <div
+              className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center
+                            group-hover:bg-primary-100 transition-colors"
+            >
               <Camera className="w-6 h-6 transition-transform group-hover:scale-110" />
             </div>
             <p className="text-sm font-medium">Foto kendaraan</p>

@@ -66,14 +66,14 @@ export default function PaymentStep({
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Order Summary */}
-      <div className="card bg-gradient-to-br from-accent/10 to-cyan/5 border-accent/20">
+      <div className="card bg-primary-50 border-primary-200">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 bg-accent/20 rounded-2xl flex items-center justify-center">
-            <Wallet className="w-5 h-5 text-accent" />
+          <div className="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center">
+            <Wallet className="w-5 h-5 text-primary-600" />
           </div>
-          <p className="text-sm text-text-secondary">Total Pembayaran</p>
+          <p className="text-sm text-gray-600">Total Pembayaran</p>
         </div>
-        <p className="text-4xl font-bold text-accent tracking-tight">
+        <p className="text-4xl font-bold text-primary-600 tracking-tight">
           Rp {order.total_price?.toLocaleString()}
         </p>
       </div>
@@ -81,17 +81,17 @@ export default function PaymentStep({
       {/* Payment Instructions */}
       <div className="card animate-slide-up" style={{ animationDelay: "0.1s" }}>
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 bg-cyan/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <AlertCircle className="w-5 h-5 text-cyan" />
+          <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <AlertCircle className="w-5 h-5 text-blue-600" />
           </div>
           <div className="flex-1">
-            <p className="font-semibold text-text-primary mb-4">
+            <p className="font-semibold text-gray-900 mb-4">
               Instruksi Pembayaran
             </p>
 
-            <ol className="text-sm text-text-secondary space-y-2">
+            <ol className="text-sm text-gray-600 space-y-2">
               <li className="flex items-start gap-2">
-                <span className="text-accent font-semibold">1.</span>
+                <span className="text-primary-600 font-semibold">1.</span>
                 <span>Transfer ke salah satu rekening berikut:</span>
               </li>
             </ol>
@@ -99,19 +99,19 @@ export default function PaymentStep({
             {/* Bank Accounts */}
             <div className="mt-4 space-y-3">
               {settings?.bank_name && settings?.bank_account && (
-                <div className="bg-dark-200/50 rounded-2xl p-4 border border-dark-50 hover:border-accent/30 transition-colors">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:border-primary-300 transition-colors">
                   <div className="flex items-center gap-2 mb-2">
-                    <Building2 className="w-4 h-4 text-text-secondary" />
-                    <span className="font-medium text-text-primary">
+                    <Building2 className="w-4 h-4 text-gray-600" />
+                    <span className="font-medium text-gray-800">
                       {settings.bank_name}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-bold text-xl text-text-primary tracking-wide">
+                      <p className="font-bold text-xl text-gray-900 tracking-wide">
                         {settings.bank_account}
                       </p>
-                      <p className="text-xs text-text-secondary mt-1">
+                      <p className="text-xs text-gray-500 mt-1">
                         a.n. {settings.bank_holder}
                       </p>
                     </div>
@@ -119,12 +119,12 @@ export default function PaymentStep({
                       onClick={() =>
                         copyToClipboard(settings.bank_account, "account1")
                       }
-                      className="p-3 hover:bg-dark-100 rounded-xl transition-all duration-200 active:scale-95"
+                      className="p-3 hover:bg-gray-100 rounded-xl transition-all duration-200 active:scale-95"
                     >
                       {copied === "account1" ? (
-                        <Check className="w-5 h-5 text-accent" />
+                        <Check className="w-5 h-5 text-green-600" />
                       ) : (
-                        <Copy className="w-5 h-5 text-text-secondary" />
+                        <Copy className="w-5 h-5 text-gray-600" />
                       )}
                     </button>
                   </div>
@@ -132,19 +132,19 @@ export default function PaymentStep({
               )}
 
               {settings?.bank_name_2 && settings?.bank_account_2 && (
-                <div className="bg-dark-200/50 rounded-2xl p-4 border border-dark-50 hover:border-accent/30 transition-colors">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:border-primary-300 transition-colors">
                   <div className="flex items-center gap-2 mb-2">
-                    <Building2 className="w-4 h-4 text-text-secondary" />
-                    <span className="font-medium text-text-primary">
+                    <Building2 className="w-4 h-4 text-gray-600" />
+                    <span className="font-medium text-gray-800">
                       {settings.bank_name_2}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-bold text-xl text-text-primary tracking-wide">
+                      <p className="font-bold text-xl text-gray-900 tracking-wide">
                         {settings.bank_account_2}
                       </p>
-                      <p className="text-xs text-text-secondary mt-1">
+                      <p className="text-xs text-gray-500 mt-1">
                         a.n. {settings.bank_holder_2}
                       </p>
                     </div>
@@ -152,12 +152,12 @@ export default function PaymentStep({
                       onClick={() =>
                         copyToClipboard(settings.bank_account_2, "account2")
                       }
-                      className="p-3 hover:bg-dark-100 rounded-xl transition-all duration-200 active:scale-95"
+                      className="p-3 hover:bg-gray-100 rounded-xl transition-all duration-200 active:scale-95"
                     >
                       {copied === "account2" ? (
-                        <Check className="w-5 h-5 text-accent" />
+                        <Check className="w-5 h-5 text-green-600" />
                       ) : (
-                        <Copy className="w-5 h-5 text-text-secondary" />
+                        <Copy className="w-5 h-5 text-gray-600" />
                       )}
                     </button>
                   </div>
@@ -165,28 +165,29 @@ export default function PaymentStep({
               )}
 
               {!settings?.bank_name && (
-                <div className="bg-yellow-500/10 rounded-2xl p-4 border border-yellow-500/20">
-                  <p className="text-sm text-yellow-400">
+                <div className="bg-yellow-50 rounded-xl p-4 border border-yellow-200">
+                  <p className="text-sm text-yellow-700">
                     Info rekening belum diatur oleh admin. Silakan hubungi admin.
                   </p>
                 </div>
               )}
             </div>
 
-            <ol className="text-sm text-text-secondary space-y-2 mt-4" start={2}>
+            <ol className="text-sm text-gray-600 space-y-2 mt-4" start={2}>
               <li className="flex items-start gap-2">
-                <span className="text-accent font-semibold">2.</span>
+                <span className="text-primary-600 font-semibold">2.</span>
                 <span>
-                  Transfer <strong className="text-text-primary">sesuai nominal</strong>{" "}
-                  di atas
+                  Transfer{" "}
+                  <strong className="text-gray-900">sesuai nominal</strong> di
+                  atas
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-accent font-semibold">3.</span>
+                <span className="text-primary-600 font-semibold">3.</span>
                 <span>Upload bukti transfer di bawah ini</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-accent font-semibold">4.</span>
+                <span className="text-primary-600 font-semibold">4.</span>
                 <span>Tunggu verifikasi dari admin</span>
               </li>
             </ol>
@@ -196,7 +197,7 @@ export default function PaymentStep({
 
       {/* Upload Area */}
       <div className="card animate-slide-up" style={{ animationDelay: "0.2s" }}>
-        <p className="font-semibold text-text-primary mb-4">
+        <p className="font-semibold text-gray-900 mb-4">
           Upload Bukti Pembayaran
         </p>
 
@@ -205,7 +206,7 @@ export default function PaymentStep({
             <img
               src={preview}
               alt="Preview"
-              className="w-full rounded-2xl object-cover max-h-64 border border-dark-50"
+              className="w-full rounded-xl object-cover max-h-64 border border-gray-200"
             />
             <button
               onClick={() => {
@@ -222,18 +223,20 @@ export default function PaymentStep({
         ) : (
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="w-full h-52 border-2 border-dashed border-dark-50 rounded-3xl 
+            className="w-full h-52 border-2 border-dashed border-gray-300 rounded-xl 
                        flex flex-col items-center justify-center gap-3
-                       text-text-secondary hover:border-accent/50 hover:text-accent
+                       text-gray-500 hover:border-primary-400 hover:text-primary-600
                        transition-all duration-300 group"
           >
-            <div className="w-16 h-16 bg-dark-100 rounded-2xl flex items-center justify-center
-                            group-hover:bg-accent/20 transition-colors">
+            <div
+              className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center
+                            group-hover:bg-primary-100 transition-colors"
+            >
               <Camera className="w-8 h-8 transition-transform group-hover:scale-110" />
             </div>
             <div className="text-center">
               <p className="font-medium">Ambil foto atau pilih gambar</p>
-              <p className="text-xs text-text-muted mt-1">Maksimal 5MB</p>
+              <p className="text-xs text-gray-400 mt-1">Maksimal 5MB</p>
             </div>
           </button>
         )}
@@ -249,22 +252,25 @@ export default function PaymentStep({
       </div>
 
       {/* Tips */}
-      <div className="card bg-dark-200/30 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+      <div
+        className="card bg-gray-50 animate-slide-up"
+        style={{ animationDelay: "0.3s" }}
+      >
         <div className="flex items-center gap-2 mb-3">
-          <Sparkles className="w-4 h-4 text-accent" />
-          <p className="font-medium text-text-secondary">Tips:</p>
+          <Sparkles className="w-4 h-4 text-primary-600" />
+          <p className="font-medium text-gray-700">Tips:</p>
         </div>
-        <ul className="text-sm text-text-muted space-y-2">
+        <ul className="text-sm text-gray-600 space-y-2">
           <li className="flex items-start gap-2">
-            <span className="text-accent">•</span>
+            <span className="text-primary-600">•</span>
             <span>Pastikan bukti transfer terlihat jelas</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-accent">•</span>
+            <span className="text-primary-600">•</span>
             <span>Pastikan nominal transfer terlihat</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-accent">•</span>
+            <span className="text-primary-600">•</span>
             <span>Format: JPG, PNG (maks 5MB)</span>
           </li>
         </ul>

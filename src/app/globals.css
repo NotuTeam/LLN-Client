@@ -5,14 +5,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --accent: #DFFF37;
-  --accent-light: #ECFF6E;
-  --bg-main: #121212;
-  --bg-secondary: #1E1E1E;
-  --bg-card: #252525;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A1A1AA;
-  --cyan: #5EEAD4;
+  --primary: #238b45;
+  --primary-light: #2ba55a;
+  --primary-dark: #1a6b35;
+  --bg-main: #f9fafb;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border-color: #e5e7eb;
 }
 
 * {
@@ -30,7 +32,7 @@ body {
 /* Base Styles */
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight text-gray-900;
   }
   
   h1 { @apply text-3xl; }
@@ -38,7 +40,7 @@ body {
   h3 { @apply text-xl; }
   
   p {
-    @apply text-text-secondary;
+    @apply text-gray-600;
   }
 }
 
@@ -46,51 +48,51 @@ body {
 @layer components {
   /* Card Component */
   .card {
-    @apply bg-dark-100 rounded-3xl p-5 border border-dark-50 transition-all duration-300;
+    @apply bg-white rounded-2xl p-5 border border-gray-200 transition-all duration-300;
   }
   
   .card:hover {
-    @apply shadow-card-hover border-dark-50;
+    @apply shadow-card-hover border-gray-300;
   }
   
   /* Button Styles */
   .btn-primary {
-    @apply bg-accent text-dark-400 font-semibold py-4 px-6 rounded-2xl 
-           transition-all duration-200 hover:bg-accent-light 
+    @apply bg-primary-600 text-white font-semibold py-4 px-6 rounded-xl 
+           transition-all duration-200 hover:bg-primary-700 
            active:scale-[0.98] flex items-center justify-center gap-2;
   }
   
   .btn-secondary {
-    @apply bg-dark-100 text-text-primary font-medium py-4 px-6 rounded-2xl 
-           border border-dark-50 transition-all duration-200 
-           hover:bg-dark-50 active:scale-[0.98];
+    @apply bg-white text-gray-700 font-medium py-4 px-6 rounded-xl 
+           border border-gray-300 transition-all duration-200 
+           hover:bg-gray-50 active:scale-[0.98];
   }
   
   .btn-pill {
-    @apply bg-accent text-dark-400 font-semibold py-3 px-6 rounded-full
-           transition-all duration-200 hover:bg-accent-light
+    @apply bg-primary-600 text-white font-semibold py-3 px-6 rounded-full
+           transition-all duration-200 hover:bg-primary-700
            active:scale-95 inline-flex items-center gap-2;
   }
   
   /* Tag/Badge */
   .tag {
     @apply px-3 py-1.5 rounded-full text-sm font-medium 
-           bg-dark-50 text-text-secondary inline-flex items-center gap-1.5;
+           bg-gray-100 text-gray-700 inline-flex items-center gap-1.5;
   }
   
-  .tag-accent {
-    @apply bg-accent/20 text-accent;
+  .tag-primary {
+    @apply bg-primary-100 text-primary-700;
   }
   
-  .tag-cyan {
-    @apply bg-cyan/20 text-cyan;
+  .tag-success {
+    @apply bg-green-100 text-green-700;
   }
   
   /* Input Styles */
   .input {
-    @apply w-full px-4 py-3 bg-dark-100 border border-dark-50 rounded-2xl
-           text-text-primary placeholder:text-text-muted
-           focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20
+    @apply w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl
+           text-gray-900 placeholder:text-gray-400
+           focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20
            transition-all duration-200;
   }
   
@@ -100,23 +102,27 @@ body {
   }
   
   .status-pending {
-    @apply bg-yellow-500/20 text-yellow-400;
+    @apply bg-yellow-100 text-yellow-700;
   }
   
   .status-paid {
-    @apply bg-blue-500/20 text-blue-400;
+    @apply bg-blue-100 text-blue-700;
   }
   
   .status-confirmed {
-    @apply bg-green-500/20 text-green-400;
+    @apply bg-green-100 text-green-700;
   }
   
   .status-queued {
-    @apply bg-purple-500/20 text-purple-400;
+    @apply bg-purple-100 text-purple-700;
   }
   
   .status-completed {
-    @apply bg-accent/20 text-accent;
+    @apply bg-gray-100 text-gray-700;
+  }
+  
+  .status-loading {
+    @apply bg-orange-100 text-orange-700;
   }
 }
 
@@ -124,12 +130,7 @@ body {
 @layer utilities {
   /* Gradient Text */
   .text-gradient {
-    @apply bg-gradient-to-r from-accent to-cyan bg-clip-text text-transparent;
-  }
-  
-  /* Glow Effect */
-  .glow {
-    @apply shadow-glow;
+    @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
   }
   
   /* Smooth transitions */
@@ -147,23 +148,23 @@ body {
     display: none;
   }
   
-  /* Custom scrollbar for dark mode */
+  /* Custom scrollbar for light mode */
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
   }
   
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #f1f1f1;
     border-radius: 10px;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: #c1c1c1;
     border-radius: 10px;
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: #a1a1a1;
   }
 }
 
@@ -189,12 +190,12 @@ body {
 
 /* Loading Skeleton */
 .skeleton {
-  @apply bg-dark-100 rounded-2xl animate-pulse;
+  @apply bg-gray-200 rounded-xl animate-pulse;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 75%
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.05) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
@@ -202,16 +203,483 @@ body {
 
 /* Print Styles */
 @media print {
+  /* Page setup */
+  @page {
+    margin: 0;
+    size: A4;
+  }
+  
   body {
     background: white !important;
     color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
-  .card {
-    @apply border-gray-300 bg-white;
-  }
-  
+  /* Hide non-print elements */
   .no-print {
     display: none !important;
+  }
+  
+  /* Hide main app container background */
+  body > div:first-child {
+    background: white !important;
+    min-height: auto !important;
+  }
+  
+  /* Reset main content area */
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+  }
+  
+  /* Show print template */
+  .print-template {
+    display: block !important;
+  }
+
+  /* ============================================
+     INVOICE & DELIVERY NOTE PRINT STYLES
+     ============================================ */
+  
+  /* Base Template */
+  .print-template {
+    padding: 20mm;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    color: #000 !important;
+    background: #fff !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Header */
+  .print-header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    margin-bottom: 5mm !important;
+  }
+
+  .print-logo h1 {
+    font-size: 18pt !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    letter-spacing: 2px !important;
+    color: #1a6b35 !important;
+  }
+
+  .print-tagline {
+    font-size: 9pt !important;
+    color: #666 !important;
+    margin-top: 2mm !important;
+    display: block !important;
+  }
+
+  .print-doc-title {
+    text-align: right !important;
+  }
+
+  .print-doc-title h2 {
+    font-size: 24pt !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    color: #1a6b35 !important;
+    display: block !important;
+  }
+
+  .print-order-num {
+    font-size: 10pt !important;
+    color: #333 !important;
+    margin-top: 2mm !important;
+    display: block !important;
+  }
+
+  .print-doc-box {
+    border: 2px solid #1a6b35 !important;
+    padding: 3mm 5mm !important;
+    text-align: center !important;
+  }
+
+  .print-doc-box h2 {
+    font-size: 14pt !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    color: #1a6b35 !important;
+    letter-spacing: 1px !important;
+    display: block !important;
+  }
+
+  .print-doc-num {
+    font-size: 10pt !important;
+    margin: 1mm 0 0 0 !important;
+    color: #333 !important;
+    display: block !important;
+  }
+
+  /* Dividers */
+  .print-divider {
+    border-top: 2px solid #1a6b35 !important;
+    margin: 5mm 0 !important;
+    display: block !important;
+  }
+
+  .print-divider-double {
+    border-top: 3px double #1a6b35 !important;
+    margin: 4mm 0 !important;
+    display: block !important;
+  }
+
+  /* Info Grid */
+  .print-info-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin-bottom: 5mm !important;
+  }
+
+  .print-info-col {
+    width: 48% !important;
+    display: block !important;
+  }
+
+  .print-info-col h3 {
+    font-size: 8pt !important;
+    text-transform: uppercase !important;
+    color: #999 !important;
+    margin: 0 0 2mm 0 !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    display: block !important;
+  }
+
+  .print-info-row {
+    display: flex !important;
+    flex-direction: row !important;
+    margin-bottom: 1.5mm !important;
+  }
+
+  .print-label {
+    width: 25mm !important;
+    font-size: 9pt !important;
+    color: #888 !important;
+    display: inline-block !important;
+  }
+
+  .print-value {
+    font-size: 10pt !important;
+    font-weight: 500 !important;
+    display: inline !important;
+  }
+
+  .print-name {
+    margin: 0 0 1mm 0 !important;
+    display: block !important;
+  }
+
+  .print-detail {
+    font-size: 10pt !important;
+    margin: 0 !important;
+    color: #444 !important;
+    display: block !important;
+  }
+
+  .print-detail span {
+    color: #888 !important;
+  }
+
+  .print-text-right {
+    text-align: right !important;
+  }
+
+  /* Section Title */
+  .print-section-title {
+    font-size: 9pt !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    color: #1a6b35 !important;
+    border-bottom: 1px solid #1a6b35 !important;
+    padding-bottom: 1mm !important;
+    margin-bottom: 3mm !important;
+    letter-spacing: 0.5px !important;
+    display: block !important;
+  }
+
+  /* Driver Section */
+  .print-driver-section {
+    margin-bottom: 5mm !important;
+    display: block !important;
+  }
+
+  .print-driver-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    /* gap: 5mm !important; */
+  }
+
+  .print-driver-item {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 3mm !important;
+    background: #f8f9fa !important;
+    border: 1px solid #ddd !important;
+    display: block !important;
+  }
+
+  .print-driver-item .print-label {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 1mm !important;
+  }
+
+  .print-driver-item .print-value {
+    display: block !important;
+    font-weight: 600 !important;
+  }
+
+  /* Tables */
+  .print-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 5mm !important;
+    display: table !important;
+  }
+
+  .print-table thead {
+    display: table-header-group !important;
+  }
+
+  .print-table tbody {
+    display: table-row-group !important;
+  }
+
+  .print-table tr {
+    display: table-row !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-table th {
+    background: #1a6b35 !important;
+    color: #fff !important;
+    padding: 3mm 2mm !important;
+    font-size: 9pt !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    display: table-cell !important;
+    border: none !important;
+  }
+
+  .print-table td {
+    padding: 2.5mm 2mm !important;
+    border-bottom: 1px solid #ddd !important;
+    font-size: 10pt !important;
+    display: table-cell !important;
+    vertical-align: middle !important;
+  }
+
+  .print-table tfoot {
+    display: table-footer-group !important;
+  }
+
+  .print-table tfoot td {
+    border-top: 2px solid #1a6b35 !important;
+    border-bottom: none !important;
+    padding: 4mm 2mm !important;
+    font-weight: 600 !important;
+  }
+
+  .print-td-center {
+    text-align: center !important;
+  }
+
+  .print-td-right {
+    text-align: right !important;
+  }
+
+  .print-td-total-label {
+    text-align: right !important;
+    font-size: 11pt !important;
+  }
+
+  .print-td-total {
+    text-align: right !important;
+    font-size: 12pt !important;
+    color: #1a6b35 !important;
+    font-weight: 700 !important;
+  }
+
+  /* Column widths */
+  .print-th-no { width: 8% !important; }
+  .print-th-item { width: 37% !important; }
+  .print-th-qty { width: 8% !important; }
+  .print-th-unit { width: 15% !important; }
+  .print-th-price { width: 16% !important; }
+  .print-th-total { width: 16% !important; }
+  .print-th-note { width: 22% !important; }
+
+  /* Payment Section */
+  .print-payment {
+    background: #f8f9fa !important;
+    padding: 5mm !important;
+    margin-bottom: 5mm !important;
+    border: 1px solid #ddd !important;
+    display: block !important;
+  }
+
+  .print-payment h3 {
+    font-size: 10pt !important;
+    margin: 0 0 3mm 0 !important;
+    color: #1a6b35 !important;
+    text-transform: uppercase !important;
+    display: block !important;
+  }
+
+  .print-bank-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 5mm !important;
+  }
+
+  .print-bank {
+    flex: 1 !important;
+    display: block !important;
+  }
+
+  .print-bank-name {
+    font-weight: 600 !important;
+    font-size: 10pt !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .print-bank-account {
+    font-size: 12pt !important;
+    font-weight: 700 !important;
+    margin: 1mm 0 !important;
+    font-family: 'Courier New', monospace !important;
+    display: block !important;
+  }
+
+  .print-bank-holder {
+    font-size: 9pt !important;
+    color: #666 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  /* Notes Section */
+  .print-notes {
+    background: #f8f9fa !important;
+    padding: 4mm !important;
+    margin-bottom: 8mm !important;
+    border: 1px solid #ddd !important;
+    display: block !important;
+  }
+
+  .print-notes-title {
+    font-size: 9pt !important;
+    font-weight: 600 !important;
+    margin: 0 0 2mm 0 !important;
+    color: #333 !important;
+    display: block !important;
+  }
+
+  .print-notes-list {
+    margin: 0 !important;
+    padding-left: 8mm !important;
+    display: block !important;
+  }
+
+  .print-notes-list li {
+    font-size: 9pt !important;
+    color: #666 !important;
+    margin-bottom: 1mm !important;
+    display: list-item !important;
+  }
+
+  /* Footer */
+  .print-footer {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin-top: 10mm !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-footer-left {
+    width: 55% !important;
+    display: block !important;
+  }
+
+  .print-footer-right {
+    width: 35% !important;
+    text-align: center !important;
+    display: block !important;
+  }
+
+  .print-note-title {
+    font-size: 9pt !important;
+    font-weight: 600 !important;
+    margin: 0 0 2mm 0 !important;
+    color: #666 !important;
+    display: block !important;
+  }
+
+  .print-note {
+    font-size: 9pt !important;
+    color: #888 !important;
+    margin: 0 !important;
+    line-height: 1.5 !important;
+    display: block !important;
+  }
+
+  /* Signatures */
+  .print-signatures {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin-top: 10mm !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-sign-col {
+    width: 40% !important;
+    text-align: center !important;
+    display: inline-block !important;
+  }
+
+  .print-sign-label {
+    font-size: 9pt !important;
+    color: #888 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .print-sign-space {
+    height: 20mm !important;
+    display: block !important;
+  }
+
+  .print-sign-line {
+    border-top: 1px solid #000 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .print-sign-name {
+    font-size: 9pt !important;
+    font-weight: 600 !important;
+    margin: 1mm 0 0 0 !important;
+    display: block !important;
+  }
+
+  .print-sign-date {
+    font-size: 8pt !important;
+    color: #888 !important;
+    margin: 1mm 0 0 0 !important;
+    display: block !important;
   }
 }

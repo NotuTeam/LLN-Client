@@ -1,5 +1,29 @@
 import type { Config } from "tailwindcss";
 
+// Primary brand color palette (same as CMS - Green)
+const PRIMARY_COLOR = "#238b45";
+
+// Generate color shades from primary color
+const generateColorShades = (hex: string) => {
+  // Convert hex to RGB
+  const r = Number.parseInt(hex.slice(1, 3), 16);
+  const g = Number.parseInt(hex.slice(3, 5), 16);
+  const b = Number.parseInt(hex.slice(5, 7), 16);
+
+  return {
+    50: `rgb(${Math.round(r + (255 - r) * 0.95)} ${Math.round(g + (255 - g) * 0.95)} ${Math.round(b + (255 - b) * 0.95)} / 1)`,
+    100: `rgb(${Math.round(r + (255 - r) * 0.9)} ${Math.round(g + (255 - g) * 0.9)} ${Math.round(b + (255 - b) * 0.9)} / 1)`,
+    200: `rgb(${Math.round(r + (255 - r) * 0.8)} ${Math.round(g + (255 - g) * 0.8)} ${Math.round(b + (255 - b) * 0.8)} / 1)`,
+    300: `rgb(${Math.round(r + (255 - r) * 0.6)} ${Math.round(g + (255 - g) * 0.6)} ${Math.round(b + (255 - b) * 0.6)} / 1)`,
+    400: `rgb(${Math.round(r + (255 - r) * 0.3)} ${Math.round(g + (255 - g) * 0.3)} ${Math.round(b + (255 - b) * 0.3)} / 1)`,
+    500: hex,
+    600: `rgb(${Math.round(r * 0.9)} ${Math.round(g * 0.9)} ${Math.round(b * 0.9)} / 1)`,
+    700: `rgb(${Math.round(r * 0.8)} ${Math.round(g * 0.8)} ${Math.round(b * 0.8)} / 1)`,
+    800: `rgb(${Math.round(r * 0.7)} ${Math.round(g * 0.7)} ${Math.round(b * 0.7)} / 1)`,
+    900: `rgb(${Math.round(r * 0.6)} ${Math.round(g * 0.6)} ${Math.round(b * 0.6)} / 1)`,
+  };
+};
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,34 +33,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Neo-Brutalism Dark Mode Theme
-        dark: {
-          50: "#2a2a2a",
-          100: "#252525",
-          200: "#1e1e1e",
-          300: "#181818",
-          400: "#121212",
-          500: "#0f0f0f",
-          600: "#0a0a0a",
-          700: "#080808",
-          800: "#050505",
-          900: "#030303",
-        },
-        accent: {
-          DEFAULT: "#DFFF37",
-          light: "#ECFF6E",
-          dark: "#C4EB00",
-        },
-        cyan: {
-          DEFAULT: "#5EEAD4",
-          light: "#86F0E1",
-          dark: "#2DD4BF",
-        },
-        text: {
-          primary: "#FFFFFF",
-          secondary: "#A1A1AA",
-          muted: "#71717A",
-        },
+        primary: generateColorShades(PRIMARY_COLOR),
       },
       borderRadius: {
         "4xl": "32px",
@@ -86,13 +83,12 @@ const config: Config = {
         },
       },
       boxShadow: {
-        glow: "0 0 20px rgba(223, 255, 55, 0.3)",
-        "glow-lg": "0 0 40px rgba(223, 255, 55, 0.4)",
-        card: "0 4px 20px rgba(0, 0, 0, 0.3)",
-        "card-hover": "0 8px 30px rgba(0, 0, 0, 0.4)",
+        card: "0 4px 20px rgba(0, 0, 0, 0.08)",
+        "card-hover": "0 8px 30px rgba(0, 0, 0, 0.12)",
       },
     },
   },
   plugins: [],
 };
 export default config;
+export { PRIMARY_COLOR };

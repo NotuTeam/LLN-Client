@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import Image from "next/image";
 
 interface MobileLayoutProps {
   children: ReactNode;
@@ -16,38 +17,42 @@ export default function MobileLayout({
   totalSteps,
 }: MobileLayoutProps) {
   return (
-    <div className="min-h-screen bg-dark-400 flex flex-col">
-      {/* Header */}
-      <header className="bg-dark-200/80 backdrop-blur-xl border-b border-dark-50/50 px-5 py-4 sticky top-0 z-10">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Header - Hidden when printing */}
+      <header className="bg-white border-b border-gray-200 px-5 py-4 sticky top-0 z-10 no-print">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {/* Logo */}
-            <div className="w-10 h-10 bg-accent rounded-2xl flex items-center justify-center shadow-glow">
-              <span className="text-dark-400 font-bold text-sm">LN</span>
-            </div>
+            <Image
+              src="/logo-bgn.png"
+              alt="logo"
+              width={50}
+              height={50}
+              className="animate-spin-slow"
+            />
             <div>
-              <h1 className="font-bold text-text-primary text-base tracking-tight">
+              <h1 className="font-bold text-gray-900 text-base tracking-tight">
                 LabaLaba Nusantara
               </h1>
-              {title && (
-                <p className="text-xs text-text-secondary">{title}</p>
-              )}
+              {title && <p className="text-xs text-gray-500">{title}</p>}
             </div>
           </div>
         </div>
-        
+
         {/* Progress Bar */}
         {currentStep && totalSteps && (
           <div className="mt-4 animate-fade-in">
-            <div className="flex justify-between text-xs text-text-secondary mb-2">
-              <span>Langkah {currentStep} dari {totalSteps}</span>
-              <span className="text-accent font-medium">
+            <div className="flex justify-between text-xs text-gray-500 mb-2">
+              <span>
+                Langkah {currentStep} dari {totalSteps}
+              </span>
+              <span className="text-primary-600 font-medium">
                 {Math.round((currentStep / totalSteps) * 100)}%
               </span>
             </div>
-            <div className="w-full h-2 bg-dark-100 rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-accent to-cyan rounded-full transition-all duration-700 ease-out"
+                className="h-full bg-primary-600 rounded-full transition-all duration-700 ease-out"
                 style={{ width: `${(currentStep / totalSteps) * 100}%` }}
               />
             </div>
@@ -56,15 +61,13 @@ export default function MobileLayout({
       </header>
 
       {/* Content */}
-      <main className="flex-1 p-5 pb-24 animate-fade-in">
+      <main className="flex-1 p-5 pb-24 animate-fade-in print:p-0 print:pb-0">
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-dark-200/80 backdrop-blur-xl border-t border-dark-50/50 px-5 py-4 text-center">
-        <p className="text-xs text-text-muted">
-          © 2024 LabaLaba Nusantara
-        </p>
+      {/* Footer - Hidden when printing */}
+      <footer className="bg-white border-t border-gray-200 px-5 py-4 text-center no-print">
+        <p className="text-xs text-gray-500">© 2024 LabaLaba Nusantara</p>
       </footer>
     </div>
   );

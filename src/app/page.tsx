@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4 bg-dark relative overflow-hidden">
@@ -8,9 +10,13 @@ export default function Home() {
       <div className="text-center max-w-md relative z-10 animate-slide-up">
         {/* Logo */}
         <div className="mb-6 flex justify-center">
-          <div className="w-20 h-20 bg-brand-lime rounded-3xl flex items-center justify-center shadow-glow animate-scale-in">
-            <span className="text-dark font-bold text-2xl">LN</span>
-          </div>
+          <Image
+            src="/logo-bgn.png"
+            alt="logo"
+            width={50}
+            height={50}
+            className="animate-spin-slow"
+          />
         </div>
 
         <h1 className="text-3xl font-bold text-text-primary mb-3">
