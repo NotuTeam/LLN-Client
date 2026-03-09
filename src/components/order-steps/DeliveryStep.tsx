@@ -30,7 +30,8 @@ export default function DeliveryStep({
   };
 
   // Get delivery note data - prefer order data first (faster), then deliveryNote
-  const noteNumber = order?.delivery_note_number || deliveryNote?.note_number || "-";
+  const noteNumber =
+    order?.delivery_note_number || deliveryNote?.note_number || "-";
   const noteDate = order?.delivery_note_at || deliveryNote?.created_at;
 
   // Get products from items or single product
@@ -75,12 +76,17 @@ export default function DeliveryStep({
           <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
             <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">Order Selesai!</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+            Order Selesai!
+          </h3>
           <p className="text-gray-600">Barang telah selesai dimuat</p>
         </div>
 
         {/* Delivery Note Card */}
-        <div className="card overflow-hidden" style={{ animationDelay: "0.1s" }}>
+        <div
+          className="card overflow-hidden"
+          style={{ animationDelay: "0.1s" }}
+        >
           {/* Header */}
           <div className="bg-primary-600 p-6 text-center">
             <div className="flex items-center justify-center gap-3 mb-2">
@@ -121,7 +127,7 @@ export default function DeliveryStep({
               </div>
             </div>
 
-            <div className="flex justify-between gap-2">
+            <div className="flex justify-between gap-2 flex-wrap">
               {/* Sales */}
               <div className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition-colors flex-1">
                 <div className="w-11 h-11 bg-blue-100 rounded-xl flex items-center justify-center">

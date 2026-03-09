@@ -40,7 +40,9 @@ export default function OrderPage() {
   const queryClient = useQueryClient();
 
   const [showTransition, setShowTransition] = useState<string | null>(null);
-  const [refetchInterval, setRefetchInterval] = useState<number | undefined>(undefined);
+  const [refetchInterval, setRefetchInterval] = useState<number | undefined>(
+    undefined,
+  );
 
   // Main order data
   const { data, isLoading, error, refetch, isFetching } = useInvoice(token, {
@@ -90,12 +92,15 @@ export default function OrderPage() {
   });
 
   // Delivery data - fetch when loading or completed
-  const { data: deliveryData, refetch: refetchDelivery } = useDeliveryNote(token, {
-    refetchInterval:
-      order && (order.status === "loading" || order.status === "completed")
-        ? 10000
-        : undefined,
-  });
+  const { data: deliveryData, refetch: refetchDelivery } = useDeliveryNote(
+    token,
+    {
+      refetchInterval:
+        order && (order.status === "loading" || order.status === "completed")
+          ? 10000
+          : undefined,
+    },
+  );
 
   // Payment upload mutation
   const uploadPayment = useMutation({
@@ -181,13 +186,18 @@ export default function OrderPage() {
     : null;
 
   // Handle transitions
-  const [hasShownLoadingTransition, setHasShownLoadingTransition] = useState(false);
+  const [hasShownLoadingTransition, setHasShownLoadingTransition] =
+    useState(false);
 
   useEffect(() => {
     if (!order) return;
 
     // Transition to delivery when completed (only once)
-    if (order.status === "completed" && !showTransition && !hasShownLoadingTransition) {
+    if (
+      order.status === "completed" &&
+      !showTransition &&
+      !hasShownLoadingTransition
+    ) {
       setShowTransition("loading_completed");
       setHasShownLoadingTransition(true);
       setTimeout(() => setShowTransition(null), 2000);
@@ -278,9 +288,7 @@ export default function OrderPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Barcode Ter-Scan!
           </h2>
-          <p className="text-gray-500 text-center">
-            Menuju halaman antrian...
-          </p>
+          <p className="text-gray-500 text-center">Menuju halaman antrian...</p>
         </div>
       </MobileLayout>
     );
@@ -296,9 +304,7 @@ export default function OrderPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Pemuatan Selesai!
           </h2>
-          <p className="text-gray-500 text-center">
-            Menyiapkan surat jalan...
-          </p>
+          <p className="text-gray-500 text-center">Menyiapkan surat jalan...</p>
         </div>
       </MobileLayout>
     );
@@ -364,9 +370,7 @@ export default function OrderPage() {
             <p className="text-sm text-blue-600 mb-2">
               Halaman akan refresh otomatis
             </p>
-            <p className="text-xs text-blue-500">
-              Refresh setiap 10 detik
-            </p>
+            <p className="text-xs text-blue-500">Refresh setiap 10 detik</p>
           </div>
         </div>
       );
@@ -437,7 +441,7 @@ export default function OrderPage() {
             </p>
           </div>
           {status && (
-            <span className={`status-badge ${status.color}`}>
+            <span className={`status-badge text-[9px] ${status.color}`}>
               {status.label}
             </span>
           )}
